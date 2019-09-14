@@ -8,6 +8,15 @@ const forecast = require('./utils/forecast');
 
 const app = express();
 
+//for heroku
+const port = process.env.PORT || 3000; //heroku provide the port using environment variables
+
+/*
+    Here we use the logical or because if Heroku procide with the port if not
+    the we are going to use our own port ie 3000 port number.
+*/
+
+
 //define paths for express config
 const publicDirectoryPath = path.join(__dirname, 'public');
 console.log(publicDirectoryPath);
@@ -123,7 +132,9 @@ app.get('*', (req,res)=>{
 
 
 //start the server
-app.listen(3001, ()=>{
-    console.log('Server is uP on port 3000!');
+app.listen(port, ()=>{
+    console.log(`Server is uP on port ${port}`);
 });
+
+
 
